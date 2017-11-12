@@ -1,28 +1,64 @@
 import React, { Component } from 'react';
 import Comment from './Comment';
 import { FaHeartO, FaCommentO } from 'react-icons/lib/fa'
+import styled from 'styled-components'
+
+// STYLES
+const PostWrapper = styled.div`
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin: 25px auto;
+  max-width: 625px;
+`
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: flex-start;
+  align-items: center;
+
+  img {
+    border-radius: 100%;
+    margin: 15px;
+    height: 40px;
+  }
+
+  p {
+    font-weight: bold;
+  }
+`
+const PostContent = styled.div`
+
+  img {
+    max-width: 625px;
+  }
+  
+  p {
+    padding: 5px;
+  }
+
+`
 
 class Post extends Component{
 
   render(){
     const { post } = this.props;
     return(
-      <div>
-        <div>
+      <PostWrapper>
+        <UserInfo>
           <img src={post.user.profile_pic} alt={post.user.username} />
           <p>{post.user.username}</p>
-        </div>
-        <div>
+        </UserInfo>
+        <PostContent>
           <img src={post.image.url} />
           <p>{post.caption}</p>
-        </div>
+        </PostContent>
         <div>
           <FaHeartO />
           <FaCommentO />
         </div>
         <p>{post.likes.length} likes</p>
         {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
-      </div>
+      </PostWrapper>
     )
   }
 }

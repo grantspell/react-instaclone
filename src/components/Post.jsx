@@ -10,6 +10,10 @@ const PostWrapper = styled.div`
   border-radius: 5px;
   margin: 25px auto;
   max-width: 625px;
+
+  p {
+    padding-left: 10px;
+  }
 `
 const UserInfo = styled.div`
   display: flex;
@@ -35,6 +39,12 @@ const PostContent = styled.div`
   p {
     padding: 5px;
   }
+`
+const IconsStyle = styled.div`
+  font-size: 35px;
+  display: flex;
+  justify-content: space-around;
+  max-width: 18%;
 
 `
 
@@ -52,10 +62,10 @@ class Post extends Component{
           <img src={post.image.url} />
           <p>{post.caption}</p>
         </PostContent>
-        <div>
+        <IconsStyle>
           <FaHeartO />
           <FaCommentO />
-        </div>
+        </IconsStyle>
         <p>{post.likes.length} likes</p>
         {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
       </PostWrapper>
